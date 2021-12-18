@@ -1,4 +1,4 @@
-import CameraIcon from '@mui/icons-material/PhotoCamera';
+import LocalPoliceIcon from '@mui/icons-material/LocalPolice';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -16,7 +16,7 @@ export default function Layout() {
       <CssBaseline />
       <AppBar position="relative">
         <Toolbar>
-          <CameraIcon sx={{ mr: 2 }} />
+          <LocalPoliceIcon sx={{ mr: 2 }} />
           <Typography variant="h6" color="inherit" noWrap>
             Polizei Tatue Tata Schliersee
           </Typography>

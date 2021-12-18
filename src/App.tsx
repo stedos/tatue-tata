@@ -1,7 +1,7 @@
 import { useCallback, useState } from 'react';
 import './App.css';
 import SignIn, { OnSubmit } from './SignIn';
-import Album from './Album';
+import Overview from './Overview';
 
 const EMAIL = 'j.kauderwelsch';
 const PASSWORD = '#erdbeere_fenster!';
@@ -14,7 +14,7 @@ function App() {
   const onLogIn = useCallback<OnSubmit>(
     ({ email, password, remember }) => {
       setIsLoggedIn(
-        (email === 'fi2' && password === 'fi2') ||
+        (email === 'fi' && password === 'fi') ||
           (email === EMAIL && password.toLowerCase() === PASSWORD)
       );
       remember && sessionStorage.setItem('loggedIn', 'true');
@@ -24,7 +24,7 @@ function App() {
 
   return (
     <div className="App">
-      {!isLoggedIn ? <SignIn onSubmit={onLogIn} /> : <Album />}
+      {!isLoggedIn ? <SignIn onSubmit={onLogIn} /> : <Overview />}
     </div>
   );
 }

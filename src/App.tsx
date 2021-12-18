@@ -1,30 +1,24 @@
 import { useCallback, useState } from 'react';
 import './App.css';
-import SignIn, { OnSubmit } from './SignIn';
+import SignIn from './SignIn';
 import Overview from './Overview';
-
-const EMAIL = 'j.kauderwelsch';
-const PASSWORD = '#erdbeere_fenster!';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(
     !!sessionStorage.getItem('loggedIn')
   );
 
-  const onLogIn = useCallback<OnSubmit>(
-    ({ email, password, remember }) => {
-      setIsLoggedIn(
-        (email === 'fi' && password === 'fi') ||
-          (email === EMAIL && password.toLowerCase() === PASSWORD)
-      );
-      remember && sessionStorage.setItem('loggedIn', 'true');
+  const onLogIn = useCallback(
+    (doRemember: boolean) => {
+      setIsLoggedIn(true);
+      doRemember && sessionStorage.setItem('loggedIn', 'true');
     },
     [setIsLoggedIn]
   );
 
   return (
     <div className="App">
-      {!isLoggedIn ? <SignIn onSubmit={onLogIn} /> : <Overview />}
+      {!isLoggedIn ? <SignIn onSuccess={onLogIn} /> : <Overview />}
     </div>
   );
 }

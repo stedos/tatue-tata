@@ -12,25 +12,30 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 
-export type OnSubmit = (data: {
-  email: string;
-  password: string;
-  remember: boolean;
-}) => void;
+const EMAIL = 'j.kauderwelsch';
+const PASSWORD = '#erdbeere_fenster!';
 
-export const SignIn: React.FC<{ onSubmit: OnSubmit }> = ({ onSubmit }) => {
+export const SignIn: React.FC<{ onSuccess: (doRemember: boolean) => void }> = ({
+  onSuccess,
+}) => {
+  const [isError, setIsError] = React.useState(false);
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const formdata = new FormData(event.currentTarget);
-    const { email, password, remember } = {
-      email: formdata.get('email')?.toString(),
-      password: formdata.get('password')?.toString(),
-      remember: !!formdata.get('remember'),
-    };
+    const email = formdata.get('email')?.toString();
+    const password = formdata.get('password')?.toString();
+    const remember = !!formdata.get('remember');
 
-    if (!email || !password) return;
+    const isCorrect =
+      (email === 'fi' && password === 'fi') ||
+      (email === EMAIL && password?.toLowerCase() === PASSWORD);
 
-    onSubmit({ email, password, remember });
+    if (isCorrect) {
+      setIsError(false);
+      onSuccess(remember);
+    } else {
+      setIsError(true);
+    }
   };
 
   return (
@@ -60,6 +65,8 @@ export const SignIn: React.FC<{ onSubmit: OnSubmit }> = ({ onSubmit }) => {
             name="email"
             autoComplete="email"
             autoFocus
+            error={isError}
+            onKeyUp={() => setIsError(false)}
           />
           <TextField
             margin="normal"
@@ -70,6 +77,8 @@ export const SignIn: React.FC<{ onSubmit: OnSubmit }> = ({ onSubmit }) => {
             type="password"
             id="password"
             autoComplete="current-password"
+            error={isError}
+            onKeyUp={() => setIsError(false)}
           />
           <FormControlLabel
             control={<Checkbox name="remember" value color="primary" />}
@@ -84,10 +93,8 @@ export const SignIn: React.FC<{ onSubmit: OnSubmit }> = ({ onSubmit }) => {
             Sign In
           </Button>
           <Grid container>
-            <Grid item xs>
-              <Link href="#" variant="body2">
-                Forgot password?
-              </Link>
+            <Grid item xs sx={{ color: 'red' }}>
+              {isError && 'Username oder Passwort inkorrekt'}
             </Grid>
           </Grid>
         </Box>

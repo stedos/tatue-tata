@@ -61,7 +61,7 @@ export default function Overview() {
           />
           <MediaCard
             type="video"
-            src="assets/hanna.webm"
+            src="assets/hanna.mp4"
             headline="WhatsApp Video"
             desc="Video Datei aus WhatsApp Verlauf von Nummer +49 171 91 *** 31"
             cta="Video"

@@ -22,8 +22,7 @@ const MediaCard: React.FC<Props> = ({ type, src, headline, desc, cta }) => {
           height: '100%',
           display: 'flex',
           flexDirection: 'column',
-          justifyContent: 'end',
-          cursor: 'pointer',
+          justifyContent: 'space-between',
         }}
       >
         {cta && (
@@ -31,7 +30,7 @@ const MediaCard: React.FC<Props> = ({ type, src, headline, desc, cta }) => {
             <Button size="small">{cta}</Button>
           </CardActions>
         )}
-        <CardMedia component={type} image={src} sx={{ flexGrow: 1 }} controls />
+        <CardMedia component={type} image={src} controls />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
             {headline}

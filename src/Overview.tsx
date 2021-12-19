@@ -2,7 +2,7 @@ import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
-import LinkedCard from './LinkedCard';
+import MediaCard from './MediaCard';
 
 export default function Overview() {
   return (
@@ -45,28 +45,42 @@ export default function Overview() {
           Fall "Tatort Hochzeit" - Aktenzeichen XY
         </Typography>
         <Grid container spacing={4}>
-          <LinkedCard
-            link="assets/hanna.webm"
-            img="assets/hanna.jpeg"
-            headline="WhatsApp Video"
-            desc="Video Datei aus WhatsApp Verlauf von Nummer +49 171 91 *** 31"
-            cta="Ansehen"
-          />
-          <LinkedCard
-            link="assets/hella.mp3"
-            img="assets/audio.jpg"
+          <MediaCard
+            type="audio"
+            src="assets/hella.mp3"
             headline="Verhör Hella B.-L."
             desc="Mitschnitt von Verhör durchgeführt von Kommisar Kauderwelsch"
-            cta="Anhören"
+            cta="Audio"
           />
-          <LinkedCard
-            link="assets/steven.mp3"
-            img="assets/audio.jpg"
+          <MediaCard
+            type="audio"
+            src="assets/steven.mp3"
             headline="Verhör Steven D."
             desc="Mitschnitt von Verhör durchgeführt von Kommisar Kauderwelsch"
-            cta="Anhören"
+            cta="Audio"
+          />
+          <MediaCard
+            type="video"
+            src="assets/hanna.webm"
+            headline="WhatsApp Video"
+            desc="Video Datei aus WhatsApp Verlauf von Nummer +49 171 91 *** 31"
+            cta="Video"
           />
         </Grid>
+      </Container>
+      <Container sx={{ py: 8 }} maxWidth="md">
+        <Typography
+          component="h2"
+          variant="h3"
+          align="center"
+          color="text.primary"
+          marginBottom={5}
+        >
+          Fall "Weihnachten" - Aktenzeichen QVC
+        </Typography>
+        <Typography variant="h5" align="center">
+          Unterlagen fehlen
+        </Typography>
       </Container>
     </>
   );
